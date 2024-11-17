@@ -19,16 +19,20 @@ export default function Pokemons() {
     const secondId = getRandomId();
 
     try {
-      const firstPoke = await fetch(
-        `https://pokeapi.co/api/v2/pokemon/${firstId}`,
-      );
-      const firstData = await firstPoke.json();
-      setFirstPokemon(firstData);
+      // Fetch both Pokémon simultaneously using Promise.all
+      const [firstPoke, secondPoke] = await Promise.all([
+        fetch(`https://pokeapi.co/api/v2/pokemon/${firstId}`),
+        fetch(`https://pokeapi.co/api/v2/pokemon/${secondId}`),
+      ]);
 
-      const secondPoke = await fetch(
-        `https://pokeapi.co/api/v2/pokemon/${secondId}`,
-      );
-      const secondData = await secondPoke.json();
+      // Wait for both responses to be parsed as JSON
+      const [firstData, secondData] = await Promise.all([
+        firstPoke.json(),
+        secondPoke.json(),
+      ]);
+
+      // Set the state with both Pokémon data
+      setFirstPokemon(firstData);
       setSecondPokemon(secondData);
     } catch (error) {
       console.error("Error fetching Pokémon:", error);
