@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Loader2 } from "lucide-react";
+import VoteButton from "./VoteButton";
 
 export default function Pokemons() {
   const [firstPokemon, setFirstPokemon] = useState(null);
@@ -47,9 +48,7 @@ export default function Pokemons() {
           className="w-52"
         />
         <h2 className="text-2xl font-bold mb-2">{firstPokemon.name}</h2>
-        <button className="w-20 bg-gruvbox-aqua p-2 rounded-xl font-bold text-lg transition-all hover:scale-125 active:scale-110">
-          Vote
-        </button>
+        <VoteButton pokemon={firstPokemon} />
       </div>
       <div className="flex flex-col items-center">
         <img
@@ -58,9 +57,7 @@ export default function Pokemons() {
           className="w-52"
         />
         <h2 className="text-2xl font-bold mb-2">{secondPokemon.name}</h2>
-        <button className="w-20 bg-gruvbox-aqua p-2 rounded-xl font-bold text-lg transition-all hover:scale-125 active:scale-110">
-          Vote
-        </button>
+        <VoteButton pokemon={secondPokemon} />
       </div>
     </div>
   );
