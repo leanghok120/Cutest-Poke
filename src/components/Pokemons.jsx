@@ -45,6 +45,7 @@ export default function Pokemons() {
           alt={firstPokemon.name}
           className="w-52"
         />
+        <h2 className="text-2xl font-bold mb-2">{firstPokemon.name}</h2>
         <button className="w-20 bg-gruvbox-aqua p-2 rounded-xl font-bold text-lg transition-all hover:scale-125 active:scale-110">
           Vote
         </button>
@@ -55,6 +56,7 @@ export default function Pokemons() {
           alt={secondPokemon.name}
           className="w-52"
         />
+        <h2 className="text-2xl font-bold mb-2">{secondPokemon.name}</h2>
         <button className="w-20 bg-gruvbox-aqua p-2 rounded-xl font-bold text-lg transition-all hover:scale-125 active:scale-110">
           Vote
         </button>
