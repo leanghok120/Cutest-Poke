@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Loader2 } from "lucide-react";
 
 export default function Pokemons() {
   const [firstPokemon, setFirstPokemon] = useState(null);
@@ -34,7 +35,7 @@ export default function Pokemons() {
   }
 
   if (!firstPokemon || !secondPokemon) {
-    return <div>Loading...</div>;
+    return <Loader2 className="animate-spin text-gruvbox-aqua" size={50} />;
   }
 
   return (
