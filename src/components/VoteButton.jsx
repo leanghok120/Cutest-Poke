@@ -17,8 +17,9 @@ export default function VoteButton({ pokemon, fetchTwoPokemons }) {
       if (response.documents.length > 0) {
         // Pokemon exists in db, update vote count
         const pokemonDoc = response.documents[0];
+        const updatedVotes = pokemonDoc.votes;
 
-        await db.pokemons.update(pokemonDoc.$id, { $inc: { votes: 1 } });
+        await db.pokemons.update(pokemonDoc.$id, { votes: updatedVotes });
       } else {
         // Pokemon does not exist in db
         await db.pokemons.create({
