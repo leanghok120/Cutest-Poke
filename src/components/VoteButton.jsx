@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
+import { Loader2 } from "lucide-react";
 import db from "../appwrite/databases";
 import { Query } from "appwrite";
 
-export default function VoteButton({ pokemon }) {
+export default function VoteButton({ pokemon, fetchTwoPokemons }) {
+  const [loading, setLoading] = useState(false);
+
   async function handleVote() {
+    setLoading(true);
+
     try {
       const response = await db.pokemons.list([
         Query.equal("name", pokemon.name),
@@ -23,8 +28,12 @@ export default function VoteButton({ pokemon }) {
           image: pokemon.sprites.front_default,
         });
       }
+
+      fetchTwoPokemons();
     } catch (err) {
       console.error(err);
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -32,8 +41,13 @@ export default function VoteButton({ pokemon }) {
     <button
       className="w-20 bg-gruvbox-aqua text-gruvbox-bg p-2 rounded-xl font-bold text-lg transition-all hover:scale-125 active:scale-110"
       onClick={handleVote}
+      disabled={loading} // Disable button while loading
     >
-      Vote
+      {loading ? (
+        <Loader2 className="animate-spin text-white" size={20} /> // Show spinner when loading
+      ) : (
+        "Vote"
+      )}
     </button>
   );
 }

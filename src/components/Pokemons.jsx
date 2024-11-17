@@ -48,7 +48,7 @@ export default function Pokemons() {
           className="w-52"
         />
         <h2 className="text-2xl font-bold mb-2">{firstPokemon.name}</h2>
-        <VoteButton pokemon={firstPokemon} />
+        <VoteButton pokemon={firstPokemon} fetchTwoPokemons={fetchTwoPokemon} />
       </div>
       <div className="flex flex-col items-center">
         <img
@@ -57,7 +57,10 @@ export default function Pokemons() {
           className="w-52"
         />
         <h2 className="text-2xl font-bold mb-2">{secondPokemon.name}</h2>
-        <VoteButton pokemon={secondPokemon} />
+        <VoteButton
+          pokemon={secondPokemon}
+          fetchTwoPokemons={fetchTwoPokemon}
+        />
       </div>
     </div>
   );
